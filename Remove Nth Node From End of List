@@ -1,0 +1,44 @@
+lass Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        length=0
+        temp = head
+        while temp is not None:
+            length+=1
+            if temp.next is not None:
+                temp = temp.next
+            else :
+                break
+        if length==1:
+            head = None
+            return head
+        if length == 2 :
+            if n==1:
+                head.next = None
+            else:
+                head = head.next
+            return head
+        temp = head
+        if n == 1 :
+            while temp is not None :
+                if temp.next.next is None:
+                    temp.next = None
+                temp = temp.next
+            return head
+        if n == length :
+            head = head.next
+            return head
+        previous = head
+        length = length-n
+        for i in range(length):
+            if i <= length-2 :
+                previous = previous.next
+        temp = previous.next.next
+        previous.next.next = None
+        previous.next = temp
+        return head
+            
